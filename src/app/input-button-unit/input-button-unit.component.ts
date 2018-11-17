@@ -4,13 +4,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-input-button-unit',
   template: `
-    <p>
-      input-button-unit works!
-      The title is: {{ title }}
-    </p>
-​
-    <input id="input1" #titleInput (keyup.enter)="changeTitle($event.target.value)">
-    <button (click)="changeTitle(titleInput.value)">save</button>
+    <input 
+      id="input1" 
+      #titleInput 
+      (keyup.enter)="changeTitle($event.target.value)" 
+      class="todo-input">
+    <button (click)="changeTitle(titleInput.value)" class="btn">save</button>
   `,
   styleUrls: ['./input-button-unit.component.sass']
 })

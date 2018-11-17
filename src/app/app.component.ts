@@ -3,22 +3,12 @@ import { TodoItem } from './interfaces/todo-item';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+    <app-list-manager></app-list-manager>
+  `,
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
 
-  addItem(title: string) {    
-    this.todoList.push({ title });
-  }
-
-  todoList: TodoItem[] = [
-    {title: 'install NodeJS'},
-    {title: 'install Angular CLI'},
-    {title: 'create new app'},
-    {title: 'serve app'},
-    {title: 'develop app'},
-    {title: 'deploy app'},
-  ];
 
 }
