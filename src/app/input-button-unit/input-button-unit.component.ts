@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-input-button-unit',
@@ -8,26 +9,31 @@ import { Component, OnInit } from '@angular/core';
       The title is: {{ title }}
     </p>
 ​
-    <input [value]="title" id="input1">
-    <button (click)="changeTitle('CLECKID!')">save</button>
+    <input id="input1" #titleInput (keyup.enter)="changeTitle($event.target.value)">
+    <button (click)="changeTitle(titleInput.value)">save</button>
   `,
   styleUrls: ['./input-button-unit.component.sass']
 })
 export class InputButtonUnitComponent implements OnInit {
 
+  @Output() submit: EventEmitter<string> = new EventEmitter();
+
   constructor() {
-   }
+  }
 
   ngOnInit() {
   }
 
-    title: string
+  title: string
 
-    generateTitle(): string {
-      return 'Passed by component - title'
-    }
+  generateTitle(): string {
+    return 'Passed by component - title'
+  }
 
-    changeTitle(msg) {
-      this.title=msg;
+  changeTitle(newTitle: string) {
+    if (newTitle) {
+      this.submit.emit(newTitle)
+      console.log(newTitle)
     }
+  }
 }
